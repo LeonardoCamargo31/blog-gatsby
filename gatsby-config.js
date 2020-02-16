@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Blog gatsby`,
+    position: `Fullstack developer`,
     description: `Um blog feito em gatsby.`,
     author: `@LeonardoCamargo31`,
   },
@@ -31,4 +32,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};
