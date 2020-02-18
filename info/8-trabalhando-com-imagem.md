@@ -51,3 +51,30 @@ plugins: [
   ...
 ]
 ```
+
+
+## Mãos ao código
+
+Temos dois tipos de imagens responsivas, que é o `Fixed` e `Fluid`. 
+- Fixed tem tamanho definido e fixo
+- Fluid vai se comportar de forma fluida, baseada no container que ela está, podendo aumentar ou diminuir. Ela vai ocupar 100% do seu container.
+
+A pergunta é "Eu sei o tamnho exato que a imagem deve ter?"
+Se tiver certeza, então vamos usar o fixed.
+```
+childImageSharp{
+  fixed(width:60,height:60){
+    ...GatsbyImageSharpFixed
+  }
+}
+```
+
+```
+childImageSharp{
+  fluid(maxWidth:60,maxHeight:60){
+    ...GatsbyImageSharpFluid
+  }
+}
+```
+
+- Podemos ver que ele gera as miniaturas, lá em `public/static/`, e cria thumbs para diferentes tamanhos e resoluções de telas.
