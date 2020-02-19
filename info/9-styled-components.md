@@ -20,3 +20,10 @@ yarn add gatsby-plugin-styled-components
 ```
 
 Vou no `gatsby-config.js` e adiciono esse novo plugin.
+
+## Styled icons
+
+```
+ yarn add styled-icons
+```
+
