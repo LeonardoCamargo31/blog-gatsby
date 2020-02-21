@@ -1,9 +1,10 @@
-import React from "react"
-import PropTypes from "prop-types"
-import Sidebar from '../Sidebar'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Sidebar from '../Sidebar';
+import MenuBar from '../MenuBar';
 
-import * as S from './styeled'
-import GlobalStyles from '../../styles/global'
+import * as S from './styeled';
+import GlobalStyles from '../../styles/global';
 
 const Layout = ({ children }) => {
   return (
@@ -11,12 +12,13 @@ const Layout = ({ children }) => {
       <GlobalStyles />
       <Sidebar />
       <S.LayoutMain>{children}</S.LayoutMain>
+      <MenuBar />
     </S.LayoutWrapper>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;
