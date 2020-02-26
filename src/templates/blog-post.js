@@ -3,8 +3,8 @@ import { graphql } from 'gatsby';
 
 // o useStaticQuery não aceita parâmetros para rodar as queries
 // só queries estáticas
-const BlogPost = ({ data }) => {
-  const post = data.markdownRemark; // markdownRemark: um unico post
+const BlogPost = props => {
+  const post = props.data.markdownRemark; // markdownRemark: um unico post
 
   return (
     <>

@@ -30,9 +30,20 @@ exports.createPages = ({ graphql, actions }) => {
   // pode ser uma query não nomeada
   return graphql(`
     {
-      allMarkdownRemark {
+      allMarkdownRemark(sort: { order: DESC, fields: frontmatter___date }) {
         edges {
           node {
+            frontmatter {
+              background
+              category
+              date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+              description
+              title
+            }
+            timeToRead
+            wordCount {
+              words
+            }
             fields {
               slug
             }
@@ -41,8 +52,10 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
   `).then(result => {
+    const posts = result.data.allMarkdownRemark.edges;
+
     // ele é assincrono, dentro do array pego um post (um node)
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    posts.forEach(({ node }) => {
       createPage({
         path: node.fields.slug, // ex my-first-post
         // path pegar apartir do projeto, normalizar para não ter confusão de pasta
@@ -50,6 +63,25 @@ exports.createPages = ({ graphql, actions }) => {
         context: {
           // pegar qualquer dado como title ou timetoread, mas queremos o slug
           slug: node.fields.slug,
+        },
+      });
+    });
+
+    const postPerPage = 6;
+    // arredondar para um numero maior
+    const numPages = Math.ceil(posts.length / postPerPage);
+
+    // criar um array com o numero de pagina que vamos ter
+    Array.from({ length: numPages }).forEach((_, index) => {
+      createPage({
+        path: index === 0 ? '/' : `/page/${index + 1}`,
+        component: path.resolve(`./src/templates/blog-list.js`),
+        context: {
+          // passar para o graphql essas variaveis
+          limit: postPerPage,
+          skip: index * postPerPage, // página index é 2, 2 * 6(limit) = skip 12, pegar apartir do 12
+          numPages,
+          currentPage: index + 1,
         },
       });
     });
