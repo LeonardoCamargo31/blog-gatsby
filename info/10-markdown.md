@@ -127,3 +127,19 @@ query PostList {
   }
 }
 ```
+
+
+## Ordenação
+```
+allMarkdownRemark(sort: { order: DESC, fields: frontmatter___date }) {}
+```
+
+## Paginação
+
+- Teremos 5 posts (limit 5) por página (skip 0)
+- Página 2 (skip 5)
+- Página 3 (skip 10)
+
+```
+allMarkdownRemark(sort: {...}, limit: 5, skip: 0) {...}
+```
