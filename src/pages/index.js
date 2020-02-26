@@ -12,9 +12,10 @@ import SEO from '../components/seo';
 import PostItem from '../components/PostItem';
 
 const IndexPage = () => {
+  // ordenar por data: sort: { order: DESC, fields: frontmatter___date }
   const { allMarkdownRemark } = useStaticQuery(graphql`
     query PostList {
-      allMarkdownRemark {
+      allMarkdownRemark(sort: { order: DESC, fields: frontmatter___date }) {
         edges {
           node {
             frontmatter {
