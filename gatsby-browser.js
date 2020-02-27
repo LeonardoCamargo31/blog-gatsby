@@ -1,7 +1,3 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
-
-// You can delete this file if you're not using it
+// o gatsby-browser serve para importar bibliotecas,
+// para lidar com coisas de js que queremos fazer fora do react
+import 'lazysizes';
