@@ -15,6 +15,10 @@ const BlogPost = props => {
 };
 // dangerouslySetInnerHTML para inserir hrml no react, é como o innerHtml
 
+// preciso chamar os dados via graphQL, e exportar para nossa tela
+// e nosso componente recebe os dados como data, exemplo:
+// const BlogPost = props => { props.data ...
+
 // fazer busca passando variavel
 // pois queremos somente um determinado um post
 export const query = graphql`

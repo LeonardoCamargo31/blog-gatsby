@@ -55,6 +55,7 @@ exports.createPages = ({ graphql, actions }) => {
     const posts = result.data.allMarkdownRemark.edges;
 
     // ele é assincrono, dentro do array pego um post (um node)
+    // criar uma página para cada post
     posts.forEach(({ node }) => {
       createPage({
         path: node.fields.slug, // ex my-first-post
