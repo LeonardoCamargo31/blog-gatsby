@@ -48,6 +48,22 @@ exports.createPages = ({ graphql, actions }) => {
               slug
             }
           }
+          next {
+            frontmatter {
+              title
+            }
+            fields {
+              slug
+            }
+          }
+          previous {
+            frontmatter {
+              title
+            }
+            fields {
+              slug
+            }
+          }
         }
       }
     }
@@ -56,14 +72,17 @@ exports.createPages = ({ graphql, actions }) => {
 
     // ele é assincrono, dentro do array pego um post (um node)
     // criar uma página para cada post
-    posts.forEach(({ node }) => {
+    posts.forEach(({ node, next, previous }) => {
       createPage({
         path: node.fields.slug, // ex my-first-post
         // path pegar apartir do projeto, normalizar para não ter confusão de pasta
         component: path.resolve(`./src/templates/blog-post.js`),
         context: {
+          // fica acessivel ao component passado por props
           // pegar qualquer dado como title ou timetoread, mas queremos o slug
           slug: node.fields.slug,
+          previousPost: next, // confuso, mas isso pq a nossa ordenação é desc
+          nextPost: previous,
         },
       });
     });

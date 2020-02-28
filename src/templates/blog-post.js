@@ -5,11 +5,16 @@ import * as S from '../components/Post/styled';
 
 import Layout from '../components/Layout';
 import SEO from '../components/seo';
+import RecommendedPosts from '../components/RecommendedPosts';
 
 // o useStaticQuery não aceita parâmetros para rodar as queries
 // só queries estáticas
 const BlogPost = props => {
+  // data resultado da query
   const post = props.data.markdownRemark; // markdownRemark: um unico post
+  // dados que vem do contexto pageContext
+  const next = props.pageContext.nextPost;
+  const previous = props.pageContext.previousPost;
 
   return (
     <Layout>
@@ -24,6 +29,7 @@ const BlogPost = props => {
       <S.MainContent>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </S.MainContent>
+      <RecommendedPosts next={next} previous={previous} />
     </Layout>
   );
 };
